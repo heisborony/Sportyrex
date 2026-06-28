@@ -1,2 +1,9 @@
-# Sportyrex
-A verifiable betting ledger applying forex-grade risk discipline (1% stake, 1:2 RR) to sports tickets — timestamped, auditable, and built to prove a strategy works before scaling it with capital.
+# Sportyrex 
+ /ˈspɔːtiˌrɛks/ A verifiable betting ledger applying forex-grade risk discipline (1% stake, 1:2 RR) to sports tickets — timestamped, auditable, and built to prove a strategy works before scaling it with capital.
+SportyRex is a personal trading ledger for sports betting, built on the same risk-management discipline that separates the small minority of profitable forex traders from the 80% who blow their accounts. Every ticket gets logged — stake, combined odds, individual legs, market, pick, and a written rationale captured *before* the result is known — so nothing gets graded on memory or vibes after the fact.
+
+The core mechanic: stake exactly 1% of your bankroll per ticket, target a minimum 1:2 risk/reward ratio, and you only need a 40% win rate to be profitable over time — the same math that defines a successful funded forex trader. Tickets are built from short-odds, high-confidence legs (typically 1.40–1.50 each) combined into a 3.0+ accumulator, rather than chasing long-shot singles where specialist-level confidence is rare. Each leg resolves independently as won, lost, or pending, and the ticket's overall status is computed automatically — any lost leg fails the ticket, all legs won means the ticket won — with zero room to round a loss up to a "close one," and zero false losses charged against bets that haven't even settled yet.
+
+The dashboard shows real win rate, ROI, and net P/L computed only from settled tickets, so a pending bet never falsely tanks your numbers. That same discipline is what makes the data worth something beyond personal use: every ticket is timestamped, Sportybet-verifiable, and structured for direct export to a real database once the catalogue reaches scale — turning a private habit-tracker into an auditable track record. The pitch, eventually, isn't "we pick winners." It's "here's 100+ verifiable tickets proving a rules-based system holds up over time" — the same evidence prop firms demand before funding a trader, just applied to sports.
+
+Terminal-styled, monospace, dark — green for wins, red for losses. Built to feel like a trading desk, because that's what it actually is.
