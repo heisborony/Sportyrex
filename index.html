@@ -21,15 +21,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.03) 3px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999}
 
 /* ─── HEADER ─── */
-.hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border);background:var(--s1)}
+.hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:18px 24px;border-bottom:1px solid var(--border);background:var(--s1)}
 .logo-wrap{display:flex;flex-direction:column;gap:2px}
 .logo{font-size:20px;font-weight:700;letter-spacing:0.08em}
 .logo-sr{color:var(--green)}
 .logo-rex{color:var(--text)}
 .logo-sub{font-size:9px;color:var(--muted);letter-spacing:0.25em;text-transform:uppercase}
-.cursor{display:inline-block;width:10px;border-radius:50%;height:10px;background:var(--green);vertical-align:middle;margin-left:3px;animation:blink 1s step-end infinite}
+.cursor{display:inline-block;width:9px;height:16px;background:var(--green);vertical-align:middle;margin-left:3px;animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .hdr-actions{display:flex;gap:8px;align-items:center}
+@media(max-width:560px){
+  .hdr{padding:14px 16px}
+  .hdr-actions{width:100%;justify-content:flex-end;flex-wrap:wrap;order:3}
+  .logo-wrap{order:1}
+}
 
 /* ─── BUTTONS ─── */
 .btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:8px 14px;border:1px solid;cursor:pointer;background:transparent;transition:all .15s}
@@ -40,6 +45,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .btn-r{color:var(--red);border-color:var(--red)}
 .btn-r:hover{background:var(--red);color:var(--bg)}
 .btn-sm{padding:5px 10px;font-size:9px}
+.btn:disabled{opacity:.35;cursor:not-allowed}
 
 /* ─── SETTINGS ─── */
 .settings{display:none;padding:14px 24px;border-bottom:1px solid var(--border);background:var(--s2)}
@@ -78,7 +84,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 @media(max-width:700px){.t-main{grid-template-columns:44px 1fr 32px}.t-fin,.t-ver-wrap{display:none}}
 .t-no{font-size:10px;color:var(--dim);font-weight:600}
 .t-info{}
-.t-matches{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:380px;margin-bottom:3px}
+.t-matches-row{display:flex;align-items:baseline;gap:14px;margin-bottom:3px}
+.t-matches{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:380px}
+.t-tid{font-size:9px;color:var(--muted);letter-spacing:0.06em;white-space:nowrap;margin-left:auto;padding-right:8px;flex-shrink:0}
+.t-tid b{color:var(--dim);font-weight:600;letter-spacing:0.1em}
+@media(max-width:700px){.t-matches{max-width:140px}.t-tid{font-size:8px;padding-right:0}}
 .t-meta{font-size:9px;color:var(--muted);letter-spacing:0.05em}
 .t-fin{text-align:right}
 .t-stake{font-size:10px;color:var(--muted);margin-bottom:2px}
@@ -88,6 +98,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .copy-btn{font-family:var(--mono);font-size:9px;background:var(--s3);border:1px solid var(--border2);color:var(--muted);padding:4px 8px;cursor:pointer;letter-spacing:0.05em;white-space:nowrap;transition:all .15s;width:100%}
 .copy-btn:hover{color:var(--text);border-color:var(--muted)}
 .copy-btn.copied{color:var(--green);border-color:var(--green)}
+.copy-btn:disabled{opacity:.35;cursor:default}
 .tog{width:28px;height:28px;background:var(--s3);border:1px solid var(--border2);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .15s;margin-left:auto}
 .tog:hover{color:var(--text);border-color:var(--muted)}
 
@@ -101,6 +112,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .l-out{font-size:10px;font-weight:700;letter-spacing:0.08em}
 .l-out.won{color:var(--green)}.l-out.lost{color:var(--red)}.l-out.pending{color:var(--yellow)}
 .odds-tag{font-size:10px;color:var(--muted);background:var(--s3);border:1px solid var(--border);padding:1px 5px}
+.leg-outcome-sel{font-family:var(--mono);font-size:9px;background:var(--bg);border:1px solid var(--border2);color:var(--text);padding:3px 6px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase}
+.leg-outcome-sel option{background:var(--s2)}
+.leg-score-in{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--border2);color:var(--text);padding:3px 6px;width:60px}
 .analysis-sec{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
 .analysis-l{font-size:8px;color:var(--muted);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:5px}
 .analysis-t{font-size:11px;color:var(--muted);line-height:1.7;font-style:italic}
@@ -116,6 +130,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .m-close:hover{color:var(--text)}
 .m-body{padding:18px}
 .m-foot{display:flex;justify-content:flex-end;gap:8px;padding:14px 18px;border-top:1px solid var(--border)}
+.m-foot.between{justify-content:space-between}
 
 /* ─── FORM ─── */
 .fg{margin-bottom:14px}
@@ -128,35 +143,26 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .f3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 @media(max-width:500px){.f2,.f3{grid-template-columns:1fr}}
 
-/* ─── UPLOAD ─── */
-.upload{border:1px dashed var(--border2);padding:22px;text-align:center;cursor:pointer;transition:all .15s;position:relative}
-.upload:hover{border-color:var(--green);background:var(--green-bg)}
-.upload input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.upload-txt{font-size:11px;color:var(--muted)}
-.upload-txt span{color:var(--green)}
-#uploadPreview{max-width:100%;max-height:180px;margin-top:12px;border:1px solid var(--border);display:none}
-.extract-btn{width:100%;padding:10px;background:var(--green-bg);border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all .15s;margin-bottom:14px}
-.extract-btn:hover{background:rgba(34,197,94,0.15)}
-.extract-btn:disabled{opacity:0.35;cursor:not-allowed}
+/* ─── PROMPT BOX ─── */
+.prompt-box{background:var(--bg);border:1px solid var(--border2);padding:14px;font-size:11px;color:var(--text);line-height:1.7;max-height:340px;overflow-y:auto;white-space:pre-wrap;margin-bottom:12px}
+.prompt-hint{font-size:10px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.prompt-hint b{color:var(--green)}
+.step-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--green);color:var(--bg);font-size:10px;font-weight:700;border-radius:50%;margin-right:6px}
+.steps-list{list-style:none;margin-bottom:14px}
+.steps-list li{font-size:11px;color:var(--text);padding:6px 0;display:flex;align-items:center;gap:4px}
+.steps-list li span.num{color:var(--green);font-weight:700;margin-right:4px}
+
+/* ─── JSON IMPORT ─── */
+.json-ta{width:100%;min-height:220px;background:var(--bg);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:11px;padding:10px;outline:none;resize:vertical;line-height:1.6}
+.json-ta:focus{border-color:var(--green)}
+.json-err{display:none;background:var(--red-bg);border:1px solid var(--red);color:var(--red);font-size:10px;padding:8px 10px;margin-top:8px;line-height:1.6}
+.json-err.show{display:block}
+.json-ok{display:none;background:var(--green-bg);border:1px solid var(--green);color:var(--green);font-size:10px;padding:8px 10px;margin-top:8px;line-height:1.6}
+.json-ok.show{display:block}
 
 /* ─── DIVIDER ─── */
 .div-line{display:flex;align-items:center;gap:10px;margin:14px 0 12px;font-size:9px;color:var(--dim);letter-spacing:0.18em}
 .div-line::before,.div-line::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* ─── LEGS EDITOR ─── */
-.legs-ed{border:1px solid var(--border);margin-bottom:8px}
-.legs-ed-hdr{display:grid;grid-template-columns:1fr 75px 65px 65px 75px 26px;gap:6px;padding:5px 8px;background:var(--s3);border-bottom:1px solid var(--border)}
-.legs-ed-hdr span{font-size:8px;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase}
-.leg-row{display:grid;grid-template-columns:1fr 75px 65px 65px 75px 26px;gap:6px;padding:7px 8px;border-bottom:1px solid var(--border);align-items:center}
-.leg-row:last-child{border-bottom:none}
-.li{background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:4px 6px;width:100%;outline:none}
-.li:focus{border-color:var(--green)}
-.lsel{background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:4px 6px;width:100%;outline:none;cursor:pointer}
-.lsel option{background:var(--s2)}
-.l-rm{background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .15s}
-.l-rm:hover{color:var(--red);border-color:var(--red)}
-.add-leg{width:100%;padding:6px;background:none;border:1px dashed var(--border);color:var(--muted);font-family:var(--mono);font-size:9px;cursor:pointer;letter-spacing:0.12em;transition:all .15s}
-.add-leg:hover{color:var(--green);border-color:var(--green)}
 
 /* ─── EMPTY ─── */
 .empty{padding:80px 24px;text-align:center}
@@ -167,9 +173,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .notif{position:fixed;bottom:20px;right:20px;background:var(--s2);border:1px solid var(--border);border-left:3px solid var(--green);padding:10px 14px;font-size:10px;color:var(--text);z-index:2000;display:none;letter-spacing:0.06em;max-width:280px}
 .notif.show{display:block}.notif.err{border-left-color:var(--red)}
 
-/* ─── LOADING ─── */
-.spin{display:inline-block;animation:spin .8s linear infinite}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+/* ─── ANALYSIS EDIT (post-import) ─── */
+.analysis-edit{width:100%;background:var(--bg);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:11px;padding:8px 10px;outline:none;resize:vertical;min-height:60px;line-height:1.6}
+.analysis-edit:focus{border-color:var(--green)}
 
 /* ─── FOOTER ─── */
 .footer{padding:18px 24px;border-top:1px solid var(--border);font-size:9px;color:var(--dim);text-align:center;letter-spacing:0.12em}
@@ -186,22 +192,18 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <header class="hdr">
   <div class="logo-wrap">
     <div class="logo"><span class="logo-sr">SPORTY</span><span class="logo-rex">REX</span><span class="cursor"></span></div>
-    <div class="logo-sub">Trading Ledger · v1.0</div>
+    <div class="logo-sub">Trading Ledger · v2.0</div>
   </div>
   <div class="hdr-actions">
     <button class="btn btn-ghost" onclick="toggleSettings()">⚙ Config</button>
     <button class="btn btn-ghost" onclick="exportData()">↓ Export</button>
-    <button class="btn btn-g" onclick="openModal()">+ New Ticket</button>
+    <button class="btn btn-g" onclick="openPromptModal()">+ New Ticket</button>
   </div>
 </header>
 
 <!-- SETTINGS -->
 <div class="settings" id="settingsPanel">
   <div class="s-row">
-    <div class="fg" style="flex:2;min-width:220px;margin-bottom:0">
-      <label class="fl">Anthropic API Key (for AI extraction)</label>
-      <input type="password" class="fi" id="apiKeyInput" placeholder="sk-ant-api03-..." />
-    </div>
     <div class="fg" style="min-width:160px;margin-bottom:0">
       <label class="fl">Starting Balance (NGN)</label>
       <input type="number" class="fi" id="startBalInput" placeholder="15000" />
@@ -254,90 +256,113 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <a href="https://github.com/heisborony" target="_blank">Built by @heisborony · GitHub ↗</a>
 </footer>
 
-<!-- MODAL -->
-<div class="overlay" id="overlay">
-  <div class="modal">
+<!-- ═══════════════ STEP 1: PROMPT MODAL ═══════════════ -->
+<div class="overlay" id="promptOverlay">
+  <div class="modal" style="max-width:680px">
     <div class="m-hdr">
-      <span class="m-title" id="modalTitle">> New Ticket</span>
-      <button class="m-close" onclick="closeModal()">×</button>
+      <span class="m-title">> Step 1 / 2 — Generate Ticket JSON</span>
+      <button class="m-close" onclick="closePromptModal()">×</button>
     </div>
     <div class="m-body">
-
-      <!-- Upload -->
-      <div class="fg">
-        <label class="fl">Upload Ticket Screenshot → AI Extracts Fields</label>
-        <div class="upload" id="uploadZone">
-          <input type="file" accept="image/*" id="imgInput" onchange="handleImg(event)" />
-          <div class="upload-txt">Drop screenshot here or <span>click to select</span></div>
-          <img id="uploadPreview" alt="preview" />
-        </div>
-      </div>
-      <button class="extract-btn" id="extractBtn" onclick="extractTicket()" disabled>⚡ Extract with AI</button>
-
-      <div class="div-line">or fill manually</div>
-
-      <!-- Basic -->
-      <div class="f2">
-        <div class="fg">
-          <label class="fl">Ticket ID</label>
-          <input class="fi" id="fId" placeholder="636454" />
-        </div>
-        <div class="fg">
-          <label class="fl">Date Placed</label>
-          <input type="datetime-local" class="fi" id="fDate" />
-        </div>
-      </div>
-      <div class="f3">
-        <div class="fg">
-          <label class="fl">Stake (NGN)</label>
-          <input type="number" class="fi" id="fStake" placeholder="15.00" step="0.01" oninput="autoReturn()" />
-        </div>
-        <div class="fg">
-          <label class="fl">Total Odds</label>
-          <input type="number" class="fi" id="fOdds" placeholder="3.13" step="0.01" oninput="autoReturn()" />
-        </div>
-        <div class="fg">
-          <label class="fl">Status</label>
-          <select class="fsel" id="fStatus" onchange="autoReturn()">
-            <option value="pending">Pending</option>
-            <option value="won">Won</option>
-            <option value="lost">Lost</option>
-          </select>
-        </div>
-      </div>
-      <div class="f2">
-        <div class="fg">
-          <label class="fl">Total Return (NGN)</label>
-          <input type="number" class="fi" id="fReturn" placeholder="48.82" step="0.01" />
-        </div>
-        <div class="fg">
-          <label class="fl">Verify Code</label>
-          <input class="fi" id="fVerify" placeholder="NG4C157UP4U09J3F7" />
-        </div>
-      </div>
-
-      <!-- Legs -->
-      <div class="fg">
-        <label class="fl">Legs</label>
-        <div class="legs-ed">
-          <div class="legs-ed-hdr">
-            <span>Match</span><span>Market</span><span>Pick</span><span>Odds</span><span>Outcome</span><span></span>
-          </div>
-          <div id="legsWrap"></div>
-        </div>
-        <button class="add-leg" onclick="addLeg()">+ Add Leg</button>
-      </div>
-
-      <!-- Analysis -->
-      <div class="fg">
-        <label class="fl">Analysis</label>
-        <textarea class="fta" id="fAnalysis" placeholder="Why this ticket? Reasoning behind each pick, confidence level, what you'd do differently..."></textarea>
-      </div>
-
+      <ul class="steps-list">
+        <li><span class="num">1.</span> Copy the prompt below.</li>
+        <li><span class="num">2.</span> Open any AI model that can read images (e.g. Claude, ChatGPT).</li>
+        <li><span class="num">3.</span> Upload your betting ticket screenshot to that AI.</li>
+        <li><span class="num">4.</span> Paste the copied prompt alongside the image.</li>
+        <li><span class="num">5.</span> The AI will reply with raw JSON — copy that JSON.</li>
+        <li><span class="num">6.</span> Click <b>Continue</b> below and paste the JSON in the next step.</li>
+      </ul>
+      <div class="prompt-box" id="promptText"></div>
+      <button class="btn btn-g" onclick="copyPrompt()" id="copyPromptBtn" style="width:100%">⧉ Copy Prompt</button>
     </div>
     <div class="m-foot">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-g" onclick="saveTicket()">Save Ticket</button>
+      <button class="btn btn-ghost" onclick="closePromptModal()">Cancel</button>
+      <button class="btn btn-g" onclick="goToImportStep()">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ STEP 2: JSON IMPORT MODAL ═══════════════ -->
+<div class="overlay" id="importOverlay">
+  <div class="modal" style="max-width:640px">
+    <div class="m-hdr">
+      <span class="m-title">> Step 2 / 2 — Paste Ticket JSON</span>
+      <button class="m-close" onclick="closeImportModal()">×</button>
+    </div>
+    <div class="m-body">
+      <div class="prompt-hint">Paste the raw JSON the AI returned. Nothing is sent anywhere — it's parsed locally in your browser.</div>
+      <textarea class="json-ta" id="jsonInput" placeholder='{"ticket_id":"...","date_placed":"...","stake":0,"total_odds":0,"total_return":0,"verify_code":"...","legs":[...]}' oninput="hideJsonMsgs()"></textarea>
+      <div class="json-err" id="jsonErr"></div>
+      <div class="json-ok" id="jsonOk"></div>
+    </div>
+    <div class="m-foot m-foot between">
+      <button class="btn btn-ghost" onclick="backToPromptStep()">← Back</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost" onclick="closeImportModal()">Cancel</button>
+        <button class="btn btn-g" onclick="importTicket()">Import Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ TICKET DETAIL / EDIT MODAL (analysis + view) ═══════════════ -->
+<div class="overlay" id="editOverlay">
+  <div class="modal">
+    <div class="m-hdr">
+      <span class="m-title">> Edit Ticket</span>
+      <button class="m-close" onclick="closeEditModal()">×</button>
+    </div>
+    <div class="m-body">
+      <div class="fg">
+        <label class="fl">Verify Code</label>
+        <input class="fi" id="eVerify" placeholder="No verification code on lost tickets" />
+      </div>
+      <div class="fg">
+        <label class="fl">Analysis</label>
+        <textarea class="analysis-edit" id="eAnalysis" placeholder="Why this ticket? Reasoning behind each pick, confidence level, what you'd do differently..."></textarea>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>
+      <button class="btn btn-g" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ GENERIC CONFIRM MODAL ═══════════════ -->
+<div class="overlay" id="confirmOverlay">
+  <div class="modal" style="max-width:380px">
+    <div class="m-hdr">
+      <span class="m-title" id="confirmTitle">> Confirm</span>
+      <button class="m-close" onclick="closeConfirmModal()">×</button>
+    </div>
+    <div class="m-body">
+      <div class="prompt-hint" id="confirmMsg" style="margin-bottom:0"></div>
+    </div>
+    <div class="m-foot">
+      <button class="btn btn-ghost" onclick="closeConfirmModal()">Cancel</button>
+      <button class="btn btn-r" id="confirmActionBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ EXPORT MODAL ═══════════════ -->
+<div class="overlay" id="exportOverlay">
+  <div class="modal" style="max-width:680px">
+    <div class="m-hdr">
+      <span class="m-title">> Export Ledger</span>
+      <button class="m-close" onclick="closeExportModal()">×</button>
+    </div>
+    <div class="m-body">
+      <div class="prompt-hint">If the automatic download didn't start (common when viewing this app inside an embedded preview), copy the JSON below and save it as a <b>.json</b> file yourself, or open it in a new tab and use your browser's Save As.</div>
+      <div class="prompt-box" id="exportText" style="max-height:300px"></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-g" onclick="copyExportJson()" id="copyExportBtn" style="flex:1">⧉ Copy JSON</button>
+        <button class="btn btn-ghost" onclick="openExportInNewTab()" style="flex:1">↗ Open in New Tab</button>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button class="btn btn-ghost" onclick="closeExportModal()">Close</button>
     </div>
   </div>
 </div>
@@ -348,9 +373,40 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <script>
 // ── STATE ──────────────────────────────────────────────────────────
 let tickets = [];
-let cfg = { apiKey: '', startBal: 15000 };
+let cfg = { startBal: 15000 };
 let editId = null;
-let imgB64 = null;
+
+// ── PROMPT TEMPLATE ────────────────────────────────────────────────
+const AI_PROMPT = `You are extracting structured data from a betting ticket screenshot (SportyRex or similar betting slip).
+
+CRITICAL OUTPUT FORMAT — READ THIS FIRST:
+Return the result ONLY as a single JSON code block (\`\`\`json ... \`\`\`) — i.e. copyable code text format, the kind with a one-click "Copy" button in your interface. Do not write anything before or after the code block: no greeting, no explanation, no summary, no notes. The entire response must be just that one code block containing the JSON object, nothing else.
+
+Use exactly this schema inside the code block:
+
+{
+  "ticket_id": "string — the ticket/slip ID shown on the ticket",
+  "date_placed": "ISO 8601 string, e.g. 2026-06-28T14:35:00",
+  "stake": number,
+  "total_odds": number,
+  "total_return": number,
+  "verify_code": "string or null — ONLY include if the ticket shows a verification code (this normally only appears on WON tickets). If the ticket is lost or shows no verification code, set this to null or omit it entirely. Do not invent one.",
+  "legs": [
+    {
+      "match": "Team A v Team B",
+      "market": "the betting market, e.g. Both Teams To Score",
+      "pick": "the specific pick made, e.g. Yes",
+      "odds": number
+    }
+  ]
+}
+
+Rules:
+- Do NOT include a "status" field. Do NOT include "score" or "outcome" on the legs. Those are determined later, not by you.
+- Extract every leg visible on the ticket, in the order shown.
+- "total_return" should be the potential or actual payout shown on the ticket (use 0 if not shown / not yet settled).
+- Numbers must be numbers, not strings.
+- Output nothing but the single JSON code block — no plain text, no explanation, no extra files.`;
 
 // ── INIT ───────────────────────────────────────────────────────────
 function init() {
@@ -358,9 +414,24 @@ function init() {
   const c = localStorage.getItem('srx_cfg');
   if (t) tickets = JSON.parse(t);
   if (c) cfg = JSON.parse(c);
-  document.getElementById('apiKeyInput').value = cfg.apiKey || '';
+  repairStaleWonReturns();
   document.getElementById('startBalInput').value = cfg.startBal || 15000;
+  document.getElementById('promptText').textContent = AI_PROMPT;
   render();
+}
+
+// One-time repair for tickets that were marked "won" while total_return was
+// still 0 (stale from import time, before the ticket had settled). Backfills
+// from stake × total_odds so existing data self-heals after this fix.
+function repairStaleWonReturns() {
+  let changed = false;
+  tickets.forEach(t => {
+    if (t.status === 'won' && !t.total_return && t.stake && t.total_odds) {
+      t.total_return = round2(t.stake * t.total_odds);
+      changed = true;
+    }
+  });
+  if (changed) save();
 }
 
 function save() {
@@ -373,19 +444,20 @@ function toggleSettings() {
 }
 
 function saveSettings() {
-  cfg.apiKey = document.getElementById('apiKeyInput').value.trim();
   cfg.startBal = parseFloat(document.getElementById('startBalInput').value) || 15000;
   localStorage.setItem('srx_cfg', JSON.stringify(cfg));
   notify('Config saved');
   renderDash();
+  document.getElementById('settingsPanel').classList.remove('open');
 }
 
 function clearAll() {
-  if (!confirm('Delete all tickets? This cannot be undone.')) return;
-  tickets = [];
-  save();
-  render();
-  notify('Ledger cleared');
+  askConfirm('Clear Ledger', 'Delete all tickets? This cannot be undone.', () => {
+    tickets = [];
+    save();
+    render();
+    notify('Ledger cleared');
+  });
 }
 
 // ── RENDER ─────────────────────────────────────────────────────────
@@ -398,9 +470,14 @@ function renderDash() {
   const settled = won.length + lost.length;
   const wr = settled > 0 ? ((won.length / settled) * 100).toFixed(1) : null;
   const staked = tickets.reduce((s, t) => s + (t.stake || 0), 0);
+  // P/L and ROI are computed over SETTLED stake only (won + lost).
+  // A pending ticket's stake is still "at risk", not yet a loss — including it
+  // here would falsely tank ROI/P/L the moment a ticket is imported, before
+  // any leg has even been marked won or lost.
+  const settledStaked = won.reduce((s, t) => s + (t.stake || 0), 0) + lost.reduce((s, t) => s + (t.stake || 0), 0);
   const returned = won.reduce((s, t) => s + (t.total_return || 0), 0);
-  const pl = returned - staked;
-  const roi = staked > 0 ? ((pl / staked) * 100).toFixed(1) : null;
+  const pl = returned - settledStaked;
+  const roi = settledStaked > 0 ? ((pl / settledStaked) * 100).toFixed(1) : null;
   const bal = cfg.startBal + pl;
 
   set('sBalance', `NGN ${fmt(bal)}`);
@@ -410,7 +487,7 @@ function renderDash() {
   set('sPending', pend.length, 'y');
   setEl('sWinRate', wr !== null ? `${wr}%` : '—', wr !== null ? (parseFloat(wr) >= 40 ? 'g' : 'r') : 'w');
   set('sStaked', `NGN ${fmt(staked)}`);
-  setEl('sPL', `${pl >= 0 ? '+' : ''}NGN ${fmt(pl)}`, pl >= 0 ? 'g' : 'r');
+  setEl('sPL', pl !== 0 || settled > 0 ? `${pl >= 0 ? '+' : ''}NGN ${fmt(pl)}` : '—', settled > 0 ? (pl >= 0 ? 'g' : 'r') : 'w');
   setEl('sROI', roi !== null ? `${roi >= 0 ? '+' : ''}${roi}%` : '—', roi !== null ? (parseFloat(roi) >= 0 ? 'g' : 'r') : 'w');
 
   const n = tickets.length;
@@ -439,7 +516,7 @@ function renderTickets() {
   if (list.length === 0) {
     container.innerHTML = `<div class="empty">
       <div class="empty-t">> ${filter === 'all' ? 'NO TICKETS LOGGED' : 'NO ' + filter.toUpperCase() + ' TICKETS'}</div>
-      <div class="empty-s">Click "+ New Ticket" to log your first bet.</div>
+      <div class="empty-s">Click "+ New Ticket" to import your first slip.</div>
     </div>`;
     return;
   }
@@ -448,9 +525,9 @@ function renderTickets() {
     const gIdx = tickets.indexOf(ticket);
     const no = String(gIdx + 1).padStart(3, '0');
     const sc = ticket.status || 'pending';
-    const matchStr = ticket.legs
+    const matchStr = ticket.legs && ticket.legs.length
       ? ticket.legs.map(l => {
-          const parts = l.match.split(' v ');
+          const parts = (l.match || '').split(' v ');
           return parts.map(p => p.trim().split(' ').pop()).join('/');
         }).join(' · ')
       : '—';
@@ -459,16 +536,18 @@ function renderTickets() {
       : sc === 'lost'
         ? `-NGN ${fmt(ticket.stake)}`
         : `NGN ${fmt(ticket.total_return)}`;
-    const verShort = ticket.verify_code
-      ? ticket.verify_code.slice(0, 10) + '…'
-      : '—';
+    const hasVerify = !!ticket.verify_code;
+    const verShort = hasVerify ? ticket.verify_code.slice(0, 10) + '…' : '— N/A —';
 
     return `
     <div class="t-row ${sc}" id="row-${gIdx}">
       <div class="t-main" onclick="togRow(${gIdx})">
         <div class="t-no">#${no}</div>
         <div class="t-info">
-          <div class="t-matches">${matchStr}</div>
+          <div class="t-matches-row">
+            <div class="t-matches">${escapeHtml(matchStr)}</div>
+            <div class="t-tid"><b>Ticket ID:</b> ${escapeHtml(ticket.ticket_id || '—')}</div>
+          </div>
           <div class="t-meta">${ticket.legs?.length || 0} LEGS · ${fmt(ticket.total_odds)}x · ${fmtDate(ticket.date_placed)}</div>
         </div>
         <div class="t-fin">
@@ -476,7 +555,7 @@ function renderTickets() {
           <div class="t-return ${sc}">${retStr}</div>
         </div>
         <div class="t-ver-wrap">
-          <button class="copy-btn" id="cb-${gIdx}" onclick="copyCode(event,${gIdx})">${verShort} ⧉</button>
+          <button class="copy-btn" id="cb-${gIdx}" onclick="copyCode(event,${gIdx})" ${hasVerify ? '' : 'disabled'}>${verShort}${hasVerify ? ' ⧉' : ''}</button>
         </div>
         <div class="tog" id="tog-${gIdx}">▼</div>
       </div>
@@ -484,10 +563,10 @@ function renderTickets() {
         ${renderLegs(ticket, gIdx)}
         ${ticket.analysis ? `<div class="analysis-sec">
           <div class="analysis-l">Analysis</div>
-          <div class="analysis-t">"${ticket.analysis}"</div>
+          <div class="analysis-t">"${escapeHtml(ticket.analysis)}"</div>
         </div>` : ''}
         <div class="t-actions">
-          <button class="btn btn-ghost btn-sm" onclick="editTicket(${gIdx})">Edit</button>
+          <button class="btn btn-ghost btn-sm" onclick="openEditModal(${gIdx})">Edit Notes / Verify Code</button>
           <button class="btn btn-r btn-sm" onclick="delTicket(${gIdx})">Delete</button>
         </div>
       </div>
@@ -501,15 +580,27 @@ function renderLegs(ticket, idx) {
   return `<table class="legs-tbl"><thead><tr>
     <th>Match</th><th>Market</th><th>Pick</th><th>Odds</th><th>Score</th><th>Result</th>
   </tr></thead><tbody>
-  ${ticket.legs.map(l => `<tr>
-    <td>${l.match || '—'}</td>
-    <td style="color:var(--muted)">${l.market || '—'}</td>
-    <td>${l.pick || '—'}</td>
+  ${ticket.legs.map((l, lIdx) => `<tr>
+    <td>${escapeHtml(l.match || '—')}</td>
+    <td style="color:var(--muted)">${escapeHtml(l.market || '—')}</td>
+    <td>${escapeHtml(l.pick || '—')}</td>
     <td><span class="odds-tag">@${l.odds || '—'}</span></td>
-    <td style="color:var(--muted)">${l.score || 'TBD'}</td>
-    <td><span class="l-out ${l.outcome || 'pending'}">${(l.outcome || 'PENDING').toUpperCase()}</span></td>
+    <td><input class="leg-score-in" value="${escapeHtml(l.score || '')}" placeholder="e.g. 2-1" onclick="event.stopPropagation()" onchange="updateLegScore(${idx},${lIdx},this.value)" /></td>
+    <td onclick="event.stopPropagation()">
+      <select class="leg-outcome-sel ${l.outcome || 'pending'}" onchange="updateLegOutcome(${idx},${lIdx},this.value)">
+        <option value="pending" ${(!l.outcome||l.outcome==='pending')?'selected':''}>Pending</option>
+        <option value="won" ${l.outcome==='won'?'selected':''}>Won</option>
+        <option value="lost" ${l.outcome==='lost'?'selected':''}>Lost</option>
+      </select>
+    </td>
   </tr>`).join('')}
   </tbody></table>`;
+}
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s == null ? '' : String(s);
+  return d.innerHTML;
 }
 
 function togRow(idx) {
@@ -539,226 +630,273 @@ function copyCode(e, idx) {
 function fmtDate(s) {
   if (!s) return '—';
   const d = new Date(s);
+  if (isNaN(d.getTime())) return '—';
   return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' });
 }
 
-// ── MODAL ──────────────────────────────────────────────────────────
-function openModal() {
-  editId = null;
-  clearForm();
-  document.getElementById('modalTitle').textContent = '> New Ticket';
-  document.getElementById('fDate').value = new Date().toISOString().slice(0, 16);
-  document.getElementById('overlay').classList.add('open');
-  addLeg();
-}
-
-function closeModal() {
-  document.getElementById('overlay').classList.remove('open');
-  imgB64 = null;
-  const prev = document.getElementById('uploadPreview');
-  prev.style.display = 'none';
-  prev.src = '';
-}
-
-function clearForm() {
-  ['fId','fStake','fOdds','fReturn','fVerify','fAnalysis','fDate']
-    .forEach(id => document.getElementById(id).value = '');
-  document.getElementById('fStatus').value = 'pending';
-  document.getElementById('legsWrap').innerHTML = '';
-  document.getElementById('extractBtn').disabled = true;
-}
-
-// ── LEGS ───────────────────────────────────────────────────────────
-function addLeg(leg = {}) {
-  const wrap = document.getElementById('legsWrap');
-  const row = document.createElement('div');
-  row.className = 'leg-row';
-  row.innerHTML = `
-    <input class="li" placeholder="Norway v France" data-f="match" value="${leg.match || ''}" />
-    <input class="li" placeholder="GG/NG" data-f="market" value="${leg.market || ''}" />
-    <input class="li" placeholder="Yes" data-f="pick" value="${leg.pick || ''}" />
-    <input class="li" type="number" step="0.01" placeholder="1.59" data-f="odds" value="${leg.odds || ''}" />
-    <select class="lsel" data-f="outcome">
-      <option value="pending" ${(!leg.outcome||leg.outcome==='pending')?'selected':''}>Pending</option>
-      <option value="won" ${leg.outcome==='won'?'selected':''}>Won</option>
-      <option value="lost" ${leg.outcome==='lost'?'selected':''}>Lost</option>
-    </select>
-    <button class="l-rm" onclick="this.closest('.leg-row').remove()">×</button>`;
-  wrap.appendChild(row);
-}
-
-function getLegs() {
-  return Array.from(document.querySelectorAll('#legsWrap .leg-row'))
-    .map(r => ({
-      match: r.querySelector('[data-f="match"]').value.trim(),
-      market: r.querySelector('[data-f="market"]').value.trim(),
-      pick: r.querySelector('[data-f="pick"]').value.trim(),
-      odds: parseFloat(r.querySelector('[data-f="odds"]').value) || 0,
-      outcome: r.querySelector('[data-f="outcome"]').value,
-      score: ''
-    }))
-    .filter(l => l.match);
-}
-
-function autoReturn() {
-  const status = document.getElementById('fStatus').value;
-  const stake = parseFloat(document.getElementById('fStake').value) || 0;
-  const odds = parseFloat(document.getElementById('fOdds').value) || 0;
-  if (status === 'won' && stake && odds)
-    document.getElementById('fReturn').value = (stake * odds).toFixed(2);
-  else if (status === 'lost')
-    document.getElementById('fReturn').value = '0.00';
-}
-
-// ── SAVE / EDIT / DELETE ───────────────────────────────────────────
-function saveTicket() {
-  const stake = parseFloat(document.getElementById('fStake').value);
-  if (!stake) { notify('Stake is required', true); return; }
-
-  const ticket = {
-    id: editId || String(Date.now()),
-    ticket_id: document.getElementById('fId').value.trim(),
-    date_placed: document.getElementById('fDate').value,
-    type: 'Multiple',
-    status: document.getElementById('fStatus').value,
-    stake,
-    total_odds: parseFloat(document.getElementById('fOdds').value) || 0,
-    total_return: parseFloat(document.getElementById('fReturn').value) || 0,
-    verify_code: document.getElementById('fVerify').value.trim(),
-    analysis: document.getElementById('fAnalysis').value.trim(),
-    legs: getLegs()
-  };
-
-  if (editId) {
-    const i = tickets.findIndex(t => t.id === editId);
-    if (i > -1) tickets[i] = ticket;
-  } else {
-    tickets.unshift(ticket);
+// ── LEG OUTCOME / SCORE → DERIVED TICKET STATUS ──────────────────────
+function updateLegOutcome(tIdx, lIdx, val) {
+  const t = tickets[tIdx];
+  if (!t || !t.legs || !t.legs[lIdx]) return;
+  t.legs[lIdx].outcome = val;
+  t.status = computeTicketStatus(t.legs);
+  if (t.status === 'won' && !t.total_return) {
+    // The imported JSON often has total_return: 0 because the ticket hadn't
+    // settled yet at extraction time. Now that every leg is confirmed Won,
+    // derive the real payout from stake × total_odds rather than trusting
+    // a stale zero, so the dashboard doesn't show a "won" ticket as a loss.
+    t.total_return = round2(t.stake * t.total_odds);
   }
-
   save();
   render();
-  closeModal();
-  notify(editId ? 'Ticket updated' : 'Ticket saved ✓');
+  // re-open the row that was just edited so the user doesn't lose context
+  const det = document.getElementById(`det-${tIdx}`);
+  const tog = document.getElementById(`tog-${tIdx}`);
+  if (det) { det.classList.add('open'); }
+  if (tog) { tog.textContent = '▲'; }
 }
 
-function editTicket(idx) {
+function round2(n) { return Math.round((n + Number.EPSILON) * 100) / 100; }
+
+function updateLegScore(tIdx, lIdx, val) {
+  const t = tickets[tIdx];
+  if (!t || !t.legs || !t.legs[lIdx]) return;
+  t.legs[lIdx].score = val;
+  save();
+  // no full re-render needed for a plain text field; avoid losing focus
+}
+
+function computeTicketStatus(legs) {
+  if (!legs || !legs.length) return 'pending';
+  const anyLost = legs.some(l => l.outcome === 'lost');
+  if (anyLost) return 'lost';
+  const allWon = legs.every(l => l.outcome === 'won');
+  if (allWon) return 'won';
+  return 'pending';
+}
+
+// ── STEP 1: PROMPT MODAL ──────────────────────────────────────────
+function openPromptModal() {
+  document.getElementById('promptOverlay').classList.add('open');
+}
+function closePromptModal() {
+  document.getElementById('promptOverlay').classList.remove('open');
+}
+function copyPrompt() {
+  navigator.clipboard.writeText(AI_PROMPT).then(() => {
+    const btn = document.getElementById('copyPromptBtn');
+    const prev = btn.textContent;
+    btn.textContent = '✓ Copied to clipboard';
+    setTimeout(() => btn.textContent = prev, 2000);
+  }).catch(() => notify('Copy failed — select the text manually', true));
+}
+function goToImportStep() {
+  closePromptModal();
+  document.getElementById('jsonInput').value = '';
+  hideJsonMsgs();
+  document.getElementById('importOverlay').classList.add('open');
+}
+function backToPromptStep() {
+  document.getElementById('importOverlay').classList.remove('open');
+  document.getElementById('promptOverlay').classList.add('open');
+}
+function closeImportModal() {
+  document.getElementById('importOverlay').classList.remove('open');
+}
+function hideJsonMsgs() {
+  document.getElementById('jsonErr').classList.remove('show');
+  document.getElementById('jsonOk').classList.remove('show');
+}
+
+// ── STEP 2: JSON IMPORT ────────────────────────────────────────────
+function importTicket() {
+  const raw = document.getElementById('jsonInput').value.trim();
+  const errEl = document.getElementById('jsonErr');
+  const okEl = document.getElementById('jsonOk');
+  hideJsonMsgs();
+
+  if (!raw) {
+    showJsonErr('Paste the JSON returned by the AI first.');
+    return;
+  }
+
+  let cleaned = raw.replace(/^```(json)?/i, '').replace(/```$/, '').trim();
+  let data;
+  try {
+    data = JSON.parse(cleaned);
+  } catch (e) {
+    showJsonErr('Could not parse that as JSON. Make sure you pasted the raw JSON object exactly as the AI returned it.');
+    return;
+  }
+
+  const required = ['ticket_id', 'date_placed', 'stake', 'total_odds', 'total_return', 'legs'];
+  const missing = required.filter(k => data[k] === undefined || data[k] === null);
+  if (missing.length) {
+    showJsonErr(`Missing required field${missing.length > 1 ? 's' : ''}: ${missing.join(', ')}`);
+    return;
+  }
+  if (!Array.isArray(data.legs) || data.legs.length === 0) {
+    showJsonErr('legs must be a non-empty array.');
+    return;
+  }
+  const legFields = ['match', 'market', 'pick', 'odds'];
+  for (let i = 0; i < data.legs.length; i++) {
+    const leg = data.legs[i];
+    const legMissing = legFields.filter(k => leg[k] === undefined || leg[k] === null || leg[k] === '');
+    if (legMissing.length) {
+      showJsonErr(`Leg ${i + 1} is missing: ${legMissing.join(', ')}`);
+      return;
+    }
+  }
+
+  const ticket = {
+    id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2)),
+    ticket_id: String(data.ticket_id),
+    date_placed: data.date_placed,
+    stake: parseFloat(data.stake) || 0,
+    total_odds: parseFloat(data.total_odds) || 0,
+    total_return: parseFloat(data.total_return) || 0,
+    verify_code: (data.verify_code === undefined || data.verify_code === null || data.verify_code === '') ? null : String(data.verify_code),
+    analysis: '',
+    status: 'pending',
+    legs: data.legs.map(l => ({
+      match: String(l.match),
+      market: String(l.market),
+      pick: String(l.pick),
+      odds: parseFloat(l.odds) || 0,
+      score: '',
+      outcome: 'pending'
+    }))
+  };
+
+  tickets.unshift(ticket);
+  save();
+  render();
+
+  showJsonOk(`Imported ticket ${ticket.ticket_id} with ${ticket.legs.length} leg${ticket.legs.length !== 1 ? 's' : ''}. Closing…`);
+  setTimeout(() => {
+    closeImportModal();
+    notify('Ticket imported ✓ — mark legs Won/Lost as they settle');
+  }, 800);
+}
+
+function showJsonErr(msg) {
+  const el = document.getElementById('jsonErr');
+  el.textContent = `✕ ${msg}`;
+  el.classList.add('show');
+}
+function showJsonOk(msg) {
+  const el = document.getElementById('jsonOk');
+  el.textContent = `✓ ${msg}`;
+  el.classList.add('show');
+}
+
+// ── EDIT MODAL (verify code + analysis only — everything else is import/leg-driven) ──
+function openEditModal(idx) {
   const t = tickets[idx];
   editId = t.id;
-  document.getElementById('modalTitle').textContent = '> Edit Ticket';
-  document.getElementById('fId').value = t.ticket_id || '';
-  document.getElementById('fDate').value = (t.date_placed || '').slice(0, 16);
-  document.getElementById('fStake').value = t.stake || '';
-  document.getElementById('fOdds').value = t.total_odds || '';
-  document.getElementById('fReturn').value = t.total_return || '';
-  document.getElementById('fStatus').value = t.status || 'pending';
-  document.getElementById('fVerify').value = t.verify_code || '';
-  document.getElementById('fAnalysis').value = t.analysis || '';
-  document.getElementById('legsWrap').innerHTML = '';
-  (t.legs || []).forEach(addLeg);
-  document.getElementById('overlay').classList.add('open');
+  document.getElementById('eVerify').value = t.verify_code || '';
+  document.getElementById('eAnalysis').value = t.analysis || '';
+  document.getElementById('editOverlay').classList.add('open');
+}
+function closeEditModal() {
+  document.getElementById('editOverlay').classList.remove('open');
+  editId = null;
+}
+function saveEdit() {
+  const i = tickets.findIndex(t => t.id === editId);
+  if (i === -1) { closeEditModal(); return; }
+  const verifyVal = document.getElementById('eVerify').value.trim();
+  tickets[i].verify_code = verifyVal === '' ? null : verifyVal;
+  tickets[i].analysis = document.getElementById('eAnalysis').value.trim();
+  save();
+  render();
+  closeEditModal();
+  notify('Ticket updated');
+}
+
+// ── GENERIC CONFIRM MODAL (replaces blocking window.confirm, which can be
+// silently blocked inside sandboxed/iframe contexts and make buttons appear dead) ──
+function askConfirm(title, msg, onConfirm) {
+  document.getElementById('confirmTitle').textContent = `> ${title}`;
+  document.getElementById('confirmMsg').textContent = msg;
+  const btn = document.getElementById('confirmActionBtn');
+  const fresh = btn.cloneNode(true);
+  btn.parentNode.replaceChild(fresh, btn);
+  fresh.addEventListener('click', () => {
+    closeConfirmModal();
+    onConfirm();
+  });
+  document.getElementById('confirmOverlay').classList.add('open');
+}
+function closeConfirmModal() {
+  document.getElementById('confirmOverlay').classList.remove('open');
 }
 
 function delTicket(idx) {
-  if (!confirm('Delete this ticket?')) return;
-  tickets.splice(idx, 1);
-  save();
-  render();
-  notify('Ticket deleted');
-}
-
-// ── IMAGE / AI EXTRACT ─────────────────────────────────────────────
-function handleImg(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const result = ev.target.result;
-    imgB64 = result.split(',')[1];
-    const prev = document.getElementById('uploadPreview');
-    prev.src = result;
-    prev.style.display = 'block';
-    document.getElementById('extractBtn').disabled = false;
-  };
-  reader.readAsDataURL(file);
-}
-
-async function extractTicket() {
-  if (!imgB64) return;
-  if (!cfg.apiKey) {
-    notify('Add your API key in Config first', true);
-    document.getElementById('settingsPanel').classList.add('open');
-    return;
-  }
-  const btn = document.getElementById('extractBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin">◌</span> Extracting...';
-
-  const prompt = `You are extracting a SportyRex betting ticket from this screenshot. Return ONLY a raw JSON object with no markdown, no explanation, no backticks. Use this exact schema:
-{"ticket_id":"","date_placed":"YYYY-MM-DDTHH:MM:SS","status":"won|lost|pending","stake":0,"total_odds":0,"total_return":0,"verify_code":"","legs":[{"match":"Team A v Team B","market":"","pick":"","odds":0,"score":"","outcome":"won|lost|pending"}]}
-If status shows Won use "won", Lost use "lost", otherwise "pending". Extract all visible legs. The date format must be ISO 8601.`;
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': cfg.apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 1200,
-        messages: [{
-          role: 'user',
-          content: [
-            { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: imgB64 }},
-            { type: 'text', text: prompt }
-          ]
-        }]
-      })
-    });
-
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const raw = (data.content?.[0]?.text || '').replace(/```json|```/g, '').trim();
-    const ext = JSON.parse(raw);
-
-    if (ext.ticket_id) document.getElementById('fId').value = ext.ticket_id;
-    if (ext.date_placed) document.getElementById('fDate').value = ext.date_placed.slice(0, 16);
-    if (ext.stake) document.getElementById('fStake').value = ext.stake;
-    if (ext.total_odds) document.getElementById('fOdds').value = ext.total_odds;
-    if (ext.total_return) document.getElementById('fReturn').value = ext.total_return;
-    if (ext.status) document.getElementById('fStatus').value = ext.status;
-    if (ext.verify_code) document.getElementById('fVerify').value = ext.verify_code;
-    document.getElementById('legsWrap').innerHTML = '';
-    (ext.legs || []).forEach(addLeg);
-    notify('Extracted — add your analysis and save');
-  } catch (err) {
-    console.error(err);
-    notify('Extraction failed — fill manually', true);
-  }
-
-  btn.disabled = false;
-  btn.innerHTML = '⚡ Extract with AI';
+  askConfirm('Delete Ticket', 'Delete this ticket? This cannot be undone.', () => {
+    tickets.splice(idx, 1);
+    save();
+    render();
+    notify('Ticket deleted');
+  });
 }
 
 // ── EXPORT ─────────────────────────────────────────────────────────
+let lastExportJson = '';
+
 function exportData() {
   const payload = {
     exported: new Date().toISOString(),
     starting_balance: cfg.startBal,
     tickets
   };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `sportyRex-ledger-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-  notify('Ledger exported');
+  lastExportJson = JSON.stringify(payload, null, 2);
+
+  // Try the native download first — this works fine when the page is opened
+  // directly in a real browser tab. It silently fails with no error inside
+  // sandboxed iframe previews (no "downloads" permission), which is why we
+  // always also show the fallback modal below rather than assuming success.
+  try {
+    const blob = new Blob([lastExportJson], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `sportyRex-ledger-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    // ignore — fallback modal covers this regardless
+  }
+
+  document.getElementById('exportText').textContent = lastExportJson;
+  document.getElementById('exportOverlay').classList.add('open');
+}
+
+function closeExportModal() {
+  document.getElementById('exportOverlay').classList.remove('open');
+}
+
+function copyExportJson() {
+  navigator.clipboard.writeText(lastExportJson).then(() => {
+    const btn = document.getElementById('copyExportBtn');
+    const prev = btn.textContent;
+    btn.textContent = '✓ Copied to clipboard';
+    setTimeout(() => btn.textContent = prev, 2000);
+  }).catch(() => notify('Copy failed — select the text manually', true));
+}
+
+function openExportInNewTab() {
+  try {
+    const blob = new Blob([lastExportJson], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const opened = window.open(url, '_blank');
+    if (!opened) notify('Pop-up blocked — try Copy JSON instead', true);
+  } catch (e) {
+    notify('Could not open new tab — try Copy JSON instead', true);
+  }
 }
 
 // ── NOTIFY ─────────────────────────────────────────────────────────
